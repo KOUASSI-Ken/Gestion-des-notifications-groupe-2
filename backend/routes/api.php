@@ -9,6 +9,6 @@ Route::get('/user', function (Request $request) {
 })->middleware('auth:sanctum');
 
 Route::middleware('auth:sanctum')->group(function () {
-    Route::get('/notifications', [NotificationPaymentController::class, 'index']);
-    Route::post('/notifications/{id}/read', [NotificationPaymentController::class, 'markAsRead']);
+    Route::get('/notifications_payment', [NotificationPaymentController::class, 'index']);
+    Route::post('/notifications_payment/{id}/read', [NotificationPaymentController::class, 'markAsRead']);
 });
