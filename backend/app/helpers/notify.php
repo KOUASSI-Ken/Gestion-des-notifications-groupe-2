@@ -68,4 +68,3 @@ function notifyPaymentRemboursement(int $userId, string $amount)
         "remboursement_infos"
     );
 }
-
