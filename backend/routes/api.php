@@ -12,3 +12,16 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('/notifications_payment', [NotificationPaymentController::class, 'index']);
     Route::post('/notifications_payment/{id}/read', [NotificationPaymentController::class, 'markAsRead']);
 });
+
+
+Route::delete('/notifications_payment/{id}', 
+    [NotificationPaymentController::class, 'destroy']
+)->middleware('auth:sanctum');
+
+Route::delete('/notifications_payment', 
+    [NotificationPaymentController::class, 'destroyAll']
+)->middleware('auth:sanctum');
+
+Route::delete('/notifications_payment/read', 
+    [NotificationPaymentController::class, 'destroyRead']
+)->middleware('auth:sanctum');
