@@ -37,3 +37,35 @@ function notifyPaymentFailed(int $userId, string $amount)
         "payment_failed"
     );
 }
+
+function notifyPaymentWaited(int $userId, string $amount)
+{
+    return notify(
+        $userId,
+        "Paiement en attente",
+        "Votre paiement de $amount est en attente ⌚",
+        "payment_waited"
+    );
+}
+
+function notifyPaymentInfos(int $userId, string $amount)
+{
+    return notify(
+        $userId,
+        "Infomations Payment",
+        "Les frais de scolarité sont disponibles dans le système et s'élèvent à $amount 💰 ",
+        "payment_infos"
+    );
+}
+
+
+function notifyPaymentRemboursement(int $userId, string $amount)
+{
+    return notify(
+        $userId,
+        "Remboursement",
+        "Remboursement de $amount effectué avec succès  👌",
+        "remboursement_infos"
+    );
+}
+

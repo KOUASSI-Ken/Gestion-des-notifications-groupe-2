@@ -31,6 +31,45 @@ class NotificationPaymentController extends Controller
         return response()->json(['success' => true]);
     }
 
+    // Supression d'une notif
+    public function destroy($id, Request $request)
+    {
+    $user = $request->user();
+
+    $notif = Notification_Payment::where('id', $id)
+        ->where('user_id', $user->id)
+        ->firstOrFail();
+
+    $notif->delete();
+
+    return response()->json(['deleted' => true]);
+    }
+
+
+    // Suppression de toutes les notifs
+    public function destroyAll(Request $request)
+    {
+    $user = $request->user();
+
+    Notification_Payment::where('user_id', $user->id)->delete();
+
+    return response()->json(['deleted' => true]);
+    }
+
+    // Supprimer notifs lu
+    public function destroyRead(Request $request)
+    {
+    $user = $request->user();
+
+    Notification_Payment::where('user_id', $user->id)
+        ->where('is_read', true)
+        ->delete();
+
+    return response()->json(['deleted' => true]);
+    }
+
+
+
 
 
 }
