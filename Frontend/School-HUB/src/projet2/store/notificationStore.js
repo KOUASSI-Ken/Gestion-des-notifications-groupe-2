@@ -19,11 +19,15 @@ const useNotificationStore = create(
         
         try {
           const response = await notificationService.getAll();
-          
+          console.log("DEBUG1 : " , response.success)
           if (response.success) {
+            console.log("DEBUG2 : " , response.success)
+            console.log("DEBUG2 : " , response.data.data)
+            console.log("DEBUG2 : " , response.unread_count)
+
             set({
-              notifications: response.data.notifications,
-              unreadCount: response.data.unread_count,
+              notifications: response.data.data,
+              unreadCount: response.unread_count,
               loading: false
             });
           }

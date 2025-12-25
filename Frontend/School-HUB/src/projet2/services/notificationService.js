@@ -2,9 +2,10 @@ import api from './api';
 import { mockNotifications, generateRandomNotification } from '../mockData/notifications';
 
 // ===== CONFIGURATION =====
-const USE_MOCK = import.meta.env.VITE_USE_MOCK === 'true';
-const IS_DEBUG = import.meta.env.VITE_DEBUG === 'true';
-
+const USE_MOCK = import.meta.env.VITE_USE_MOCK ;
+//const IS_DEBUG = import.meta.env.VITE_DEBUG;
+const IS_DEBUG = true;
+console.log('🔧 DEBug:',IS_DEBUG );
 if (IS_DEBUG) {
   console.log('🔧 NotificationService - Mode:', USE_MOCK ? 'MOCK' : 'API');
 }
@@ -31,11 +32,15 @@ class NotificationService {
     }
     
     try {
-      if (IS_DEBUG) console.log('🌐 GET /notifications');
-      const response = await api.get('/notifications');
+      if (IS_DEBUG) console.log('🌐 GET /notifications_payment');
+      
+      const response = await api.get('/notifications_payment');
       
       if (IS_DEBUG) console.log('✅ Notifications reçues:', response.data);
-      return response.data;
+      return {
+        success: true,
+        data : response,
+        unread_count: response.data.length};
       
     } catch (error) {
       console.error('❌ Erreur getAll:', error);
@@ -54,8 +59,8 @@ class NotificationService {
     }
     
     try {
-      if (IS_DEBUG) console.log(`🌐 POST /notifications/${notificationId}/read`);
-      const response = await api.post(`/notifications/${notificationId}/read`);
+      if (IS_DEBUG) console.log(`🌐 POST /notifications_payment/${notificationId}/read`);
+      const response = await api.post(`/notifications_payment/${notificationId}/read`);
       
       if (IS_DEBUG) console.log('✅ Marquée comme lue');
       return response.data;
@@ -77,8 +82,8 @@ class NotificationService {
     }
     
     try {
-      if (IS_DEBUG) console.log('🌐 POST /notifications/mark-all-read');
-      const response = await api.post('/notifications/mark-all-read');
+      if (IS_DEBUG) console.log('🌐 POST /notifications_payment/mark-all-read');
+      const response = await api.post('/notifications_payment/mark-all-read');
       
       if (IS_DEBUG) console.log('✅ Toutes marquées');
       return response.data;
@@ -100,8 +105,8 @@ class NotificationService {
     }
     
     try {
-      if (IS_DEBUG) console.log(`🌐 DELETE /notifications/${notificationId}`);
-      await api.delete(`/notifications/${notificationId}`);
+      if (IS_DEBUG) console.log(`🌐 DELETE /notifications_payment/${notificationId}`);
+      await api.delete(`/notifications_payment/${notificationId}`);
       
       if (IS_DEBUG) console.log('✅ Supprimée');
       return { success: true };
@@ -126,8 +131,8 @@ class NotificationService {
     }
     
     try {
-      if (IS_DEBUG) console.log('🌐 POST /notifications/send');
-      const response = await api.post('/notifications/send', notificationData);
+      if (IS_DEBUG) console.log('🌐 POST /notifications_payment/send');
+      const response = await api.post('/notifications_payment/send', notificationData);
       
       if (IS_DEBUG) console.log('✅ Envoyée');
       return response.data;

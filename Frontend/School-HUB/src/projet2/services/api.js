@@ -132,4 +132,10 @@ export const logout = () => {
   console.log('👋 Déconnexion');
 };
 
+api.get("/notifications_payment")
+  .then(res => {
+    console.log("RAW RESPONSE 👉", res);
+    console.log("DATA 👉", res.data);
+  })
+
 export default api;
