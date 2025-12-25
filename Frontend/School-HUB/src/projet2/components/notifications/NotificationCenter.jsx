@@ -23,10 +23,10 @@ export const NotificationCenter = () => {
   // Filtrer les notifications selon le filtre actif
   const getFilteredNotifications = () => {
     switch (filter) {
-      case 'unread':
-        return notifications.filter(n => !n.read_at);
-      case 'read':
-        return notifications.filter(n => n.read_at);
+      case 0:
+        return notifications.filter(n => !n.is_read);
+      case 1:
+        return notifications.filter(n => n.is_read);
       default:
         return notifications;
     }
@@ -129,9 +129,9 @@ export const NotificationCenter = () => {
               ) : filteredNotifications.length === 0 ? (
                 <div className="notif-empty">
                   <p>
-                    {filter === 'unread' 
+                    {filter === 0 
                       ? 'Aucune notification non lue' 
-                      : filter === 'read'
+                      : filter === 1
                       ? 'Aucune notification lue'
                       : 'Aucune notification'}
                   </p>

@@ -10,8 +10,8 @@ export const NotificationItem = ({
   // Icône selon le type de notification
   const getIcon = () => {
     const icons = {
-      payment_approved: <Check className="icon-success" size={20} />,
-      payment_rejected: <X className="icon-error" size={20} />,
+      payment_success: <Check className="icon-success" size={20} />,
+      payment_failed: <X className="icon-error" size={20} />,
       payment_pending: <Clock className="icon-warning" size={20} />,
       info: <AlertCircle className="icon-info" size={20} />
     };
@@ -21,8 +21,8 @@ export const NotificationItem = ({
   // Classe CSS selon le type
   const getTypeClass = () => {
     const classes = {
-      payment_approved: 'notif-success',
-      payment_rejected: 'notif-error',
+      payment_success: 'notif-success',
+      payment_failed: 'notif-error',
       payment_pending: 'notif-warning',
       info: 'notif-info'
     };
@@ -51,7 +51,7 @@ export const NotificationItem = ({
     });
   };
 
-  const isUnread = !notification.read_at;
+  const isUnread = !notification.is_read;
 
   return (
     <div 

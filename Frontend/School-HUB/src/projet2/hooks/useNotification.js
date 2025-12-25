@@ -26,11 +26,11 @@ export const useNotifications = () => {
   
   // Fonctions utilitaires
   const getUnreadNotifications = () => {
-    return notifications.filter(n => !n.read_at);
+    return notifications.filter(n => !n.is_read);
   };
   
   const getReadNotifications = () => {
-    return notifications.filter(n => n.read_at);
+    return notifications.filter(n => n.is_read);
   };
   
   const getNotificationsByType = (type) => {
