@@ -21,13 +21,18 @@ class NotificationService {
       if (IS_DEBUG) console.log('🎭 Mode MOCK');
       await new Promise(resolve => setTimeout(resolve, 500));
       
+      // Adapter les mocks aussi pour cohérence
+      const adaptedMocks = mockNotifications.map(notification => ({
+        ...notification,
+        content: notification.content || notification.message, // Assurer content
+        is_read: notification.is_read !== undefined ? notification.is_read : !notification.read_at,
+      }));
+      
       return {
         success: true,
-        data: {
-          notifications: mockNotifications,
-          unread_count: mockNotifications.filter(n => !n.read_at).length,
-          total: mockNotifications.length
-        }
+        data: adaptedMocks,
+        unread_count: adaptedMocks.filter(n => !n.is_read).length,
+        total: adaptedMocks.length
       };
     }
     
@@ -37,10 +42,20 @@ class NotificationService {
       const response = await api.get('/notifications_payment');
       
       if (IS_DEBUG) console.log('✅ Notifications reçues:', response.data);
+      
+      // Adapter les données du backend aux noms attendus par le frontend
+      const adaptedNotifications = response.data.map(notification => ({
+        ...notification,
+        content: notification.content || notification.message, // Assurer que content est présent
+        is_read: notification.is_read, // Assurer que c'est un boolean
+        // Autres mappings si nécessaire
+      }));
+      
       return {
         success: true,
-        data : response,
-        unread_count: response.data.length};
+        data: adaptedNotifications,
+        unread_count: adaptedNotifications.filter(n => !n.is_read).length
+      };
       
     } catch (error) {
       console.error('❌ Erreur getAll:', error);

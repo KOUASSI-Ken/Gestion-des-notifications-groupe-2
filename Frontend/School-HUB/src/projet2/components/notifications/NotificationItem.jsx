@@ -67,7 +67,7 @@ export const NotificationItem = ({
           {isUnread && <span className="unread-dot"></span>}
         </div>
         
-        <p className="notif-message">{notification.message}</p>
+        <p className="notif-message">{notification.content}</p>
         
         {notification.student_name && (
           <div className="notif-meta">

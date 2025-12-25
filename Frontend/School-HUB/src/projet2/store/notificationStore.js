@@ -22,11 +22,11 @@ const useNotificationStore = create(
           console.log("DEBUG1 : " , response.success)
           if (response.success) {
             console.log("DEBUG2 : " , response.success)
-            console.log("DEBUG2 : " , response.data.data)
+            console.log("DEBUG2 : " , response.data)
             console.log("DEBUG2 : " , response.unread_count)
 
             set({
-              notifications: response.data.data,
+              notifications: response.data,
               unreadCount: response.unread_count,
               loading: false
             });

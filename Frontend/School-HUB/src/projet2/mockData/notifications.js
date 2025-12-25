@@ -3,49 +3,49 @@ export const mockNotifications = [
   {
     id: 1,
     title: '✅ Paiement validé',
-    message: 'Le paiement de 50 000 FCFA pour la tranche 1 de Jean Kouadio a été validé avec succès.',
+    content: 'Le paiement de 50 000 FCFA pour la tranche 1 de Jean Kouadio a été validé avec succès.',
     type: 'payment_approved',
     student_name: 'Jean Kouadio',
     amount: 50000,
-    read_at: null, // null = non lue
+    is_read: false, // false = non lue
     created_at: new Date(Date.now() - 1000 * 60 * 5).toISOString(), 
   },
   {
     id: 2,
     title: '❌ Paiement rejeté',
-    message: 'Le paiement de 30 000 FCFA pour Marie Tanoh a été rejeté. Numéro de téléphone incorrect.',
+    content: 'Le paiement de 30 000 FCFA pour Marie Tanoh a été rejeté. Numéro de téléphone incorrect.',
     type: 'payment_rejected',
     student_name: 'Marie Tanoh',
     amount: 30000,
-    read_at: null,
+    is_read: false,
     created_at: new Date(Date.now() - 1000 * 60 * 30).toISOString(), // Il y a 30 min
   },
   {
     id: 3,
     title: '⏰ Rappel de paiement',
-    message: 'La tranche 2 (75 000 FCFA) pour Ibrahim Diallo arrive à échéance le 25 décembre 2025.',
+    content: 'La tranche 2 (75 000 FCFA) pour Ibrahim Diallo arrive à échéance le 25 décembre 2025.',
     type: 'payment_pending',
     student_name: 'Ibrahim Diallo',
     amount: 75000,
-    read_at: null,
+    is_read: false,
     created_at: new Date(Date.now() - 1000 * 60 * 60 * 2).toISOString(), // Il y a 2h
   },
   {
     id: 4,
     title: '💰 Paiement en attente',
-    message: 'Le paiement de 45 000 FCFA pour Fatou Sow est en cours de vérification.',
+    content: 'Le paiement de 45 000 FCFA pour Fatou Sow est en cours de vérification.',
     type: 'payment_pending',
     student_name: 'Fatou Sow',
     amount: 45000,
-    read_at: new Date(Date.now() - 1000 * 60 * 20).toISOString(), // Lue il y a 20 min
+    is_read: true, // Lue
     created_at: new Date(Date.now() - 1000 * 60 * 60 * 5).toISOString(), // Il y a 5h
   },
   {
     id: 5,
     title: 'ℹ️ Information',
-    message: 'Les frais de scolarité pour le trimestre 2 sont maintenant disponibles dans le système.',
+    content: 'Les frais de scolarité pour le trimestre 2 sont maintenant disponibles dans le système.',
     type: 'info',
-    read_at: new Date().toISOString(), // Déjà lue
+    is_read: true, // Déjà lue
     created_at: new Date(Date.now() - 1000 * 60 * 60 * 24).toISOString(), // Hier
   },
   {
