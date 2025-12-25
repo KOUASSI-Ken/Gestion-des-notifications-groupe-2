@@ -19,18 +19,23 @@ export const NotificationCenter = () => {
     refetch,
     simulateRealtimeNotification
   } = useNotifications();
+// pour vérifier les valeurs du store 
+console.log("UnreadCount:", unreadCount);
+console.log("Notifications:", notifications);
+
 
   // Filtrer les notifications selon le filtre actif
   const getFilteredNotifications = () => {
-    switch (filter) {
-      case 0:
-        return notifications.filter(n => !n.is_read);
-      case 1:
-        return notifications.filter(n => n.is_read);
-      default:
-        return notifications;
-    }
-  };
+  switch (filter) {
+    case 'unread':
+      return notifications.filter(n => !n.read_at);
+    case 'read':
+      return notifications.filter(n => n.read_at);
+    default:
+      return notifications;
+  }
+};
+
 
   const filteredNotifications = getFilteredNotifications();
 
