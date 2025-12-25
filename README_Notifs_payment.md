@@ -1,6 +1,7 @@
 # Gestion-des-notifications-groupe-2
 groupe2
 
+## Documentation du projet  Laravel
 Les notifications sont générés dans le fichier backend\app\helpers\notify.php 
 la fonction notify est accessible de partout 
 Elle prend en parametre $userId (id de l'utilisateur connecté),  $title( le titre de la notif Informations , Remboursement , Payement ),  $content (contenu et corps de la notif ), $type( type de la notif payment_success , payment_echoue , infos_system ) dans ce ordre 
@@ -21,7 +22,7 @@ Ils prennent en parametre juste l'id du user connecté et le montant en question
 Par conséquent dans l'une des fonctions qui gère un payment ou alors un remboursement on peut juste ajouter notifyPaymentSuccess(user->id , 100000) pour générer cette notif dans la bdd et la rendere accessible au front
 
 
-Documentation du projet REACT  
+## Documentation du projet REACT  
 Les notifications générés par le backend parviennent au front REACT par requettes HTPP . Ces dernieres sont gérés par VITE et nécéssite forcément un token correspondant àun utilisateur connecté .
 Le fichier api.js centralise le comportement des requêtes HTTP vers l’endpoint principal :
 
