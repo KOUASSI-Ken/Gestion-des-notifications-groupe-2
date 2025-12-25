@@ -46,15 +46,15 @@ const useNotificationStore = create(
         try {
           await notificationService.markAsRead(notificationId);
           
-          set((state) => ({
-            notifications: state.notifications.map(notif =>
-              notif.id === notificationId
-                ? { ...notif, read_at: new Date().toISOString() }
-                : notif
+            set((state) => ({
+                notifications: state.notifications.map(notif =>
+                 notif.id === notificationId
+                 ? { ...notif, is_read: true }
+                 : notif
             ),
             unreadCount: Math.max(0, state.unreadCount - 1)
-          }));
-          
+     }));
+
         } catch (error) {
           console.error('Erreur mark as read:', error);
           showNotificationToast.error('Erreur lors du marquage');
@@ -69,10 +69,10 @@ const useNotificationStore = create(
           set((state) => ({
             notifications: state.notifications.map(notif => ({
               ...notif,
-              read_at: notif.read_at || new Date().toISOString()
+              is_read: true
             })),
             unreadCount: 0
-          }));
+          }));  
           
           showNotificationToast.success('Toutes les notifications ont été marquées comme lues');
         } catch (error) {
@@ -88,7 +88,8 @@ const useNotificationStore = create(
           
           set((state) => {
             const notifToDelete = state.notifications.find(n => n.id === notificationId);
-            const wasUnread = notifToDelete && !notifToDelete.read_at;
+            const wasUnread = notifToDelete && !notifToDelete.is_read;
+
             
             return {
               notifications: state.notifications.filter(n => n.id !== notificationId),
@@ -131,7 +132,7 @@ const useNotificationStore = create(
           title: '🔔 Nouvelle notification',
           message: 'Ceci est une notification de test en temps réel',
           type: 'info',
-          read_at: null,
+          is_read: false,
           created_at: new Date().toISOString(),
         };
         

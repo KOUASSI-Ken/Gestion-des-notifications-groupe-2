@@ -48,7 +48,7 @@ class NotificationService {
         ...notification,
         content: notification.content || notification.message, // Assurer que content est présent
         is_read: notification.is_read, // Assurer que c'est un boolean
-        // Autres mappings si nécessaire
+       
       }));
       
       return {

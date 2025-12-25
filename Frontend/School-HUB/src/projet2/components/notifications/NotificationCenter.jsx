@@ -28,9 +28,9 @@ console.log("Notifications:", notifications);
   const getFilteredNotifications = () => {
   switch (filter) {
     case 'unread':
-      return notifications.filter(n => !n.read_at);
+      return notifications.filter(n => !n.is_read);
     case 'read':
-      return notifications.filter(n => n.read_at);
+      return notifications.filter(n => n.is_read);
     default:
       return notifications;
   }
@@ -134,9 +134,9 @@ console.log("Notifications:", notifications);
               ) : filteredNotifications.length === 0 ? (
                 <div className="notif-empty">
                   <p>
-                    {filter === 0 
+                    {filter === 'unread' 
                       ? 'Aucune notification non lue' 
-                      : filter === 1
+                      : filter === 'read'
                       ? 'Aucune notification lue'
                       : 'Aucune notification'}
                   </p>
